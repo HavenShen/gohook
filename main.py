@@ -1,8 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*
-# wikisoo @ Python
-# Functions: 微信公众平台接口
-# Created By HavenShen on 2013-11-29,Version 0.1
+# gohook @ Python
+# Functions: WebHook自动部署代码
+# Created By HavenShen on 2016-04-05,Version 0.1
 
 import comm_log
 import subprocess
@@ -15,8 +15,8 @@ from tornado.options import define, options
 #监听端口
 define("port", default=8765, help="run on the given port", type=int)
 #日志输出
-define("log", default=comm_log.get_logging('gohook'), help="TOKEN", type=str)
-
+define("log", default=comm_log.get_logging('gohook'))
+#希望自动部署项目路径
 file_path = '/home/wwwroot/enjelly'
 
 def cd_path():
