@@ -37,13 +37,18 @@ class MainHandler(tornado.web.RequestHandler):
 
     #post请求各种微信post提交过来的消息
     def post(self):
-        #输出日志
-        options.log.info('loginfo:done')
+        data = tornado.escape.json_decode(self.request.body)
+	if data['token'] == 'gohook':
+		print True
+	else:
+		print False
+	#输出日志
+        #options.log.info('loginfo:done post' + json)
         self.write('done')
 
 
 application = tornado.web.Application([
-    (r"/", MainHandler),
+    (r"/gohook", MainHandler),
 ])
 
 if __name__ == "__main__":
