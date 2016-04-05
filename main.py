@@ -17,40 +17,38 @@ define("port", default=8765, help="run on the given port", type=int)
 #日志输出
 define("log", default=comm_log.get_logging('gohook'), help="TOKEN", type=str)
 
-file_path = '/Users/HavenShen/Desktop/gogit'
+file_path = '/home/wwwroot/enjelly'
+
+def cd_path():
+	cmd = ['cd',file_path]
+	p = subprocess.Popen(cmd,cwd=file_path)
+	p.wait()
 
 def pull():
-    cmd = ['cd', file_path, '&&','git','pull']
-    p = subprocess.Popen(cmd,cwd=file_path)
-    p.wait()
+	cmd = ['git','pull']
+	p = subprocess.Popen(cmd,cwd=file_path)
+	p.wait()
 
 class MainHandler(tornado.web.RequestHandler):
-
-
-    #get请求，验证微信接口
-    def get(self,response):
-        json = tornado.escape.json_decode(response.body)
-        #输出log
-        options.log.info('loginfo:done' + json)
-        #验证成功返回
-        self.write('done')
-
-    #post请求各种微信post提交过来的消息
-    def post(self):
-        data = tornado.escape.json_decode(self.request.body)
-	if data['token'] == 'gohook':
-		print True
-	else:
-		print False
-	#输出日志
-        #options.log.info('loginfo:done post' + json)
-        self.write('done')
+	def get(self,response):
+        	self.write('get done.')
+	
+	def post(self):
+        	data = tornado.escape.json_decode(self.request.body)
+		if data['token'] == 'gohook':
+			cd_path()
+			pull()
+			options.log.info('git pull done.')
+		else:
+			options.log.info('git pull error.[token is false]')
+		
+		self.write('post done.')
 
 
 application = tornado.web.Application([
-    (r"/gohook", MainHandler),
+	(r"/gohook", MainHandler),
 ])
 
 if __name__ == "__main__":
-    application.listen(options.port)
-    tornado.ioloop.IOLoop.instance().start()
+	application.listen(options.port)
+	tornado.ioloop.IOLoop.instance().start()
