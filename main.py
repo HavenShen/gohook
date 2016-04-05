@@ -17,7 +17,7 @@ define("port", default=8765, help="run on the given port", type=int)
 #日志输出
 define("log", default=comm_log.get_logging('gohook'))
 #希望自动部署项目路径
-file_path = '/home/wwwroot/enjelly'
+file_path = '/home/wwwroot/xxx'
 
 def cd_path():
 	cmd = ['cd',file_path]
