@@ -3,7 +3,7 @@ gohook
 
 > Python 使用 Tornado 框架实现 WebHook 自动部署 Git 项目
 
-为了方便开发测试或项目部署至服务器不那么繁琐，搞一个自动部署的小轮子也是别要的。
+为了方便开发测试或项目部署至服务器不那么繁琐，搞一个自动部署的小轮子也是必要的。
 
 小轮子需要涉及到 Coding 项目托管平台(也可以用 Github 平台)，Linux服务器的Nginx、Python( Tornado框架 )。
 
