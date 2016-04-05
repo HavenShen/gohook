@@ -30,11 +30,11 @@ def pull():
 	p.wait()
 
 class MainHandler(tornado.web.RequestHandler):
-	def get(self,response):
+	def get(self):
         	self.write('get done.')
 	
 	def post(self):
-        	data = tornado.escape.json_decode(self.request.body)
+        data = tornado.escape.json_decode(self.request.body)
 		if data['token'] == 'gohook':
 			cd_path()
 			pull()
