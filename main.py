@@ -31,19 +31,18 @@ def pull():
 
 class MainHandler(tornado.web.RequestHandler):
 	def get(self):
-        	self.write('get done.')
-	
+		self.write('get done.')
+
 	def post(self):
-        data = tornado.escape.json_decode(self.request.body)
+		data = tornado.escape.json_decode(self.request.body)
 		if data['token'] == 'gohook':
 			cd_path()
 			pull()
 			options.log.info('git pull done.')
 		else:
 			options.log.info('git pull error.[token is false]')
-		
-		self.write('post done.')
 
+		self.write('post done.')
 
 application = tornado.web.Application([
 	(r"/gohook", MainHandler),
