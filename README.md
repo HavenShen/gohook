@@ -7,6 +7,8 @@ gohook
 
 小轮子需要涉及到 Coding 项目托管平台(也可以用 Github 平台)，Linux服务器的Nginx、Python( Tornado框架 )。
 
+同时配置项目托管平台的个人私钥或项目公钥，保证 `git pull` 能直接拉取。
+
 ## 安装
 
 1.下载或克隆此项目
