@@ -19,11 +19,6 @@ define("log", default=comm_log.get_logging('gohook'))
 #希望自动部署项目路径
 file_path = '/home/wwwroot/xxx'
 
-def cd_path():
-	cmd = ['cd',file_path]
-	p = subprocess.Popen(cmd,cwd=file_path)
-	p.wait()
-
 def pull():
 	cmd = ['git','pull']
 	p = subprocess.Popen(cmd,cwd=file_path)
@@ -36,7 +31,6 @@ class MainHandler(tornado.web.RequestHandler):
 	def post(self):
 		data = tornado.escape.json_decode(self.request.body)
 		if data['token'] == 'gohook':
-			cd_path()
 			pull()
 			options.log.info('git pull done.')
 		else:
